@@ -16,3 +16,15 @@ MongoClient.connect(dbConnectionString)
         db = client.db(dbName)
         collection = db.collection('alien-info')
     })
+
+//middleware
+app.set('view engine', 'ejs') //lets us setup ejs (templating for html)
+app.use(express.static('public')) //setting up a folder to hold our css/main.js. Lets our app sitting on heroku, serve up some files in public folder. It's the VIEWS.      
+app.use(express.urlencoded({extended:true})) //helps us parse URLs
+app.use(express.json()) //help express parse JSON and pull it apart and get what we need from it
+app.use(cors()) //takes care of cors errors. (sets the cross origin access policy)
+
+    //create PORT
+    app.listen(process.env.PORT || PORT, () => {
+        console.log(`Server is running on port`)
+    })
