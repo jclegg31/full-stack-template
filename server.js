@@ -24,7 +24,17 @@ app.use(express.urlencoded({extended:true})) //helps us parse URLs
 app.use(express.json()) //help express parse JSON and pull it apart and get what we need from it
 app.use(cors()) //takes care of cors errors. (sets the cross origin access policy)
 
-    //create PORT
-    app.listen(process.env.PORT || PORT, () => {
-        console.log(`Server is running on port`)
-    })
+//CRUD starts here
+app.get('/', async(req, res) => {
+    try{
+        res.render('index.ejs')
+    } catch (error) {
+        response.status(500).send({message: error.message})
+    }
+})
+
+
+//create PORT
+app.listen(process.env.PORT || PORT, () => {
+    console.log(`Server is running on port`)
+})
